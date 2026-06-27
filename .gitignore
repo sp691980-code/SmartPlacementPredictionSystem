@@ -1,0 +1,13 @@
+# Java compiled files
+*.class
+
+# Project data files
+students.dat
+report.txt
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
