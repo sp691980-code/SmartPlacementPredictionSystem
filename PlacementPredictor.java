@@ -1,15 +1,21 @@
 public class PlacementPredictor {
 
-    public static double calculateScore(Student s) {
+       public static double calculateScore(Student s) {
 
-        return (s.cgpa * 5)
-                + (s.attendance * 0.20)
-                + (s.aptitude * 0.20)
-                + (s.technical * 0.25)
-                + (s.communication * 0.15)
-                + (s.projects * 2)
-                + (s.certifications * 1.5);
-    }
+            double score =
+                    (s.cgpa * 4)
+                  + (s.attendance * 0.15)
+                  + (s.aptitude * 0.20)
+                  + (s.technical * 0.20)
+                  + (s.communication * 0.15)
+                  + (s.projects * 2)
+                  + (s.certifications * 1);
+        
+            if(score > 100)
+                score = 100;
+        
+            return score;
+       }
 
     public static String predict(Student s) {
 

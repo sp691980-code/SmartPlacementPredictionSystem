@@ -13,6 +13,12 @@ Placement Score : 96.70
 Placement Chance : Excellent
 Suggestion : Excellent chance of placement.
 ---------------------------------------
+Name : alok
+CGPA : 6.9
+Placement Score : 94.40
+Placement Chance : Excellent
+Suggestion : Excellent chance of placement.
+---------------------------------------
 Name : pandey
 CGPA : 7.0
 Placement Score : 92.00
