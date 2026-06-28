@@ -4,6 +4,7 @@
 public class Student implements Serializable {
 
     int studentId;
+    int rank;
     String registrationDate;
 
     String name;

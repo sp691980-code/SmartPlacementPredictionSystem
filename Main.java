@@ -13,32 +13,46 @@ public class Main {
             return;
 
         }
+              Scanner sc = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+             ArrayList<Student> students = FileManager.loadStudents();
+             
+             System.out.println();
+             System.out.println("=========================================================");
+             System.out.println("        SMART PLACEMENT PREDICTION SYSTEM");
+             System.out.println("=========================================================");
+             System.out.println("  Developed By : Shubham Pandey");
+             System.out.println("  Language     : Java");
+             System.out.println("  Version      : 2.0");
+             System.out.println("=========================================================");
+             System.out.println("  Welcome! Predict Your Placement Success");
+             System.out.println("=========================================================");
+             
+            int choice;
 
-         ArrayList<Student> students = FileManager.loadStudents();
-
-        int choice;
+        
 
         do {
 
-            System.out.println("\n========================================");
-               System.out.println(" SMART PLACEMENT PREDICTION SYSTEM");
-               System.out.println("========================================");
-               System.out.println("1. Predict Placement");
-               System.out.println("2. View All Students");
-               System.out.println("3. Search Student");
-               System.out.println("4. Update Student");
-               System.out.println("5. Delete Student");
-               System.out.println("6. Top Performer");
-               System.out.println("7. Statistics Dashboard");
-               System.out.println("8. Sort Students by Placement Score");
-               System.out.println("9. Save All Students");
-               System.out.println("10. Load Students");
-               System.out.println("11. Export Report");
-               System.out.println("12. Company Eligibility Checker");
-               System.out.println("13. Exit");
-               System.out.print("Enter Choice : ");
+           System.out.println("\n╔════════════════════════════════════════════════════╗");
+             System.out.println("║        SMART PLACEMENT PREDICTION SYSTEM           ║");
+             System.out.println("╠════════════════════════════════════════════════════╣");
+             System.out.println("║ 1.  Predict Placement                              ║");
+             System.out.println("║ 2.  View All Students                              ║");
+             System.out.println("║ 3.  Search Student                                 ║");
+             System.out.println("║ 4.  Update Student                                 ║");
+             System.out.println("║ 5.  Delete Student                                 ║");
+             System.out.println("║ 6.  Top Performer                                  ║");
+             System.out.println("║ 7.  Statistics Dashboard                           ║");
+             System.out.println("║ 8.  Student Ranking                                ║");
+             System.out.println("║ 9.  Save Students                                  ║");
+             System.out.println("║10.  Load Students                                  ║");
+             System.out.println("║11.  Export Report                                  ║");
+             System.out.println("║12.  Company Eligibility Checker                    ║");
+             System.out.println("║13.  Exit                                           ║");
+             System.out.println("║14. About Project                                   ║");
+             System.out.println("╚════════════════════════════════════════════════════╝");
+             System.out.print("Enter Your Choice : ");
             
                 choice = sc.nextInt();
                 sc.nextLine();
@@ -88,14 +102,35 @@ public class Main {
                         );
                         students.add(s); 
                         FileManager.saveStudents(students);
-                         double score = PlacementPredictor.calculateScore(s);
-                         String result = PlacementPredictor.predict(s);
+                        System.out.print("\nAnalyzing Student Data");
                         
-                        System.out.printf("Placement Score : %.2f%n", score);
-    
-                        System.out.println("Placement Chance : " + result);
-                        System.out.println("Suggestion : "
-                                + PlacementPredictor.suggestion(score));
+                        for (int i = 0; i < 5; i++) {
+                            try {
+                                Thread.sleep(400);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.print(".");
+                        }
+                        
+                        System.out.println("\nAnalysis Completed Successfully!\n");
+                          double score = PlacementPredictor.calculateScore(s);
+                            String result = PlacementPredictor.predict(s);
+                            
+                            System.out.println("\n==================================================");
+                            System.out.println("              PLACEMENT REPORT");
+                            System.out.println("==================================================");
+                            System.out.println("Student Name        : " + name);
+                            System.out.printf("CGPA                : %.2f%n", cgpa);
+                            System.out.printf("Placement Score     : %.2f%n", score);
+                            System.out.println("Progress            :");
+                            System.out.println(PlacementPredictor.getProgressBar(score));
+
+                            System.out.println("Placement Chance    : " + result);
+                            System.out.println("Grade               : " + PlacementPredictor.getGrade(s));
+                            System.out.println("Recommended Company : " + PlacementPredictor.recommendCompany(s));
+                            System.out.println("Suggestion          : " + PlacementPredictor.suggestion(score));
+                            System.out.println("==================================================");
     
                                 try {
     
@@ -309,20 +344,29 @@ public class Main {
                                  
                              }
                          
-                                     System.out.println("\n===== TOP PERFORMER =====");
                                      
-                                     System.out.println("Student ID : " + topStudent.studentId);
-                                     System.out.println("Registration Date : " + topStudent.registrationDate);
-                                 
-                                     System.out.println("Name : " + topStudent.name);
-                                     System.out.println("CGPA : " + topStudent.cgpa);
-                                     System.out.println("Grade : "
-                                     + PlacementPredictor.getGrade(topStudent));
-                                 
+                                     System.out.println("\n==================================================");
+                                       System.out.println("                 TOP PERFORMER");
+                                       System.out.println("==================================================");
+                                       
+                                       System.out.println("Student ID            : " + topStudent.studentId);
+                                       System.out.println("Registration Date     : " + topStudent.registrationDate);
+                                       System.out.println("Name                  : " + topStudent.name);
+                                       System.out.printf("CGPA                  : %.2f%n", topStudent.cgpa);
+                                       System.out.printf("Placement Score       : %.2f%n", highestScore);
+                                       System.out.println("Placement Chance      : " + PlacementPredictor.predict(topStudent));
+                                       System.out.println("Grade                 : " + PlacementPredictor.getGrade(topStudent));
+                                       System.out.println("Recommended Company   : " + PlacementPredictor.recommendCompany(topStudent));
+                                       
+                                       
+                                                                        
                                      System.out.printf("Placement Score : %.2f%n", highestScore);
                                  
                                      System.out.println("Placement Chance : "
                                              + PlacementPredictor.predict(topStudent));
+
+                                      System.out.println("==================================================");
+
                   
                         break;
                                        
@@ -336,6 +380,10 @@ public class Main {
                                         
                                             double totalCgpa = 0;
                                             double totalScore = 0;
+                                            int excellent = 0;
+                                            int good = 0;
+                                            int average = 0;
+                                            int poor = 0;
                                         
                                             Student highestStudent = students.get(0);
                                             Student lowestStudent = students.get(0);
@@ -346,7 +394,19 @@ public class Main {
                                             for(Student st : students)
                                             {
                                                 double  currentScore = PlacementPredictor.calculateScore(st);
-                                        
+                                                String placementResult = PlacementPredictor.predict(st);
+
+                                                if(placementResult.equals("Excellent"))
+                                                    excellent++;
+                                                   
+                                                  else if(placementResult.equals("Good"))
+                                                    good++;
+                                                else if(placementResult.equals("Average"))
+                                                    average++;
+                                                else
+                                                    poor++;
+
+
                                                 totalCgpa += st.cgpa;
                                                 totalScore += currentScore;
 
@@ -363,44 +423,92 @@ public class Main {
                                                 }
                                             }
                                         
-                                            System.out.println("\n========== STATISTICS ==========");
-                                        
-                                            System.out.println("Total Students : " + students.size());
-                                        
-                                            System.out.printf("Average CGPA : %.2f%n",
-                                                    totalCgpa / students.size());
-                                        
-                                            System.out.printf("Average Placement Score : %.2f%n",
-                                                    totalScore / students.size());
-                                        
-                                            System.out.println("Highest Performer : " + highestStudent.name);
-                                        
-                                            System.out.println("Lowest Performer : " + lowestStudent.name);
+                                            System.out.println("\n==================================================");
+                                              System.out.println("           STATISTICS DASHBOARD");
+                                              System.out.println("==================================================");
+                                              
+                                              System.out.println("Total Students            : " + students.size());
+                                              
+                                              System.out.printf("Average CGPA              : %.2f%n",
+                                                      totalCgpa / students.size());
+                                              
+                                              System.out.printf("Average Placement Score   : %.2f%n",
+                                                      totalScore / students.size());
+                                              
+                                              System.out.println("----------------------------------------------");
+                                              
+                                              System.out.println("Excellent Students        : " + excellent);
+                                              System.out.println("Good Students             : " + good);
+                                              System.out.println("Average Students          : " + average);
+                                              System.out.println("Poor Students             : " + poor);
+                                              
+                                              System.out.println("----------------------------------------------");
+                                              
+                                              System.out.println("Highest Performer         : " + highestStudent.name);
+                                              System.out.println("Lowest Performer          : " + lowestStudent.name);
+                                              
+                                              System.out.println("==================================================");
                                         
                                         break;
 
-                                    case 8:
+                                        case 8:
 
-                                      students.sort((a,b)->Double.compare(
-                                      PlacementPredictor.calculateScore(b),
-                                      PlacementPredictor.calculateScore(a)));
-                                      
-                                      System.out.println("\n===== SORTED STUDENTS =====");
-                                      
-                                      for(Student st : students){
-                                      
-                                          System.out.println("------------------------");
-                                          System.out.println("Name : " + st.name);
-                                      
-                                          System.out.printf("Placement Score : %.2f%n",
-                                                  PlacementPredictor.calculateScore(st));
-                                                  System.out.println("Grade : "
-                                                 + PlacementPredictor.getGrade(st));
-                                                  System.out.println("Rank : " + (students.indexOf(st) + 1));
-                                      }
-                                      
-                                    break;
+                                            if(students.isEmpty())
+                                            {
+                                                System.out.println("No Students Available!");
+                                                break;
+                                            }
+                                        
+                                            students.sort((a, b) ->
+                                                    Double.compare(
+                                                            PlacementPredictor.calculateScore(b),
+                                                            PlacementPredictor.calculateScore(a)
+                                                    ));
+                                        
+                                            System.out.println("\n========== STUDENT RANKING ==========");
+                                        
+                                            for(int i = 0; i < students.size(); i++)
+                                            {
+                                                Student st = students.get(i);
+                                        
+                                                st.rank = i + 1;
+                                        
+                                                System.out.println("-------------------------------------------");
+                                                                                                     if (st.rank == 1)
+                                                        System.out.println("*** Rank 1 (TOPPER) ***");
+                                                    else if (st.rank == 2)
+                                                        System.out.println("*** Rank 2 ***");
+                                                    else if (st.rank == 3)
+                                                        System.out.println("*** Rank 3 ***");
+                                                    else
+                                                        System.out.println("Rank : " + st.rank);
+                                       
+                                                  System.out.println("Student ID            : " + st.studentId);
+                                                  System.out.println("Name                  : " + st.name);
+                                                  System.out.printf("CGPA                  : %.2f%n", st.cgpa);
+                                                  
+                                                  System.out.printf("Placement Score       : %.2f%n",
+                                                          PlacementPredictor.calculateScore(st));
+                                                  
+                                                  System.out.println("Placement Chance      : "
+                                                          + PlacementPredictor.predict(st));
+                                                  
+                                                  System.out.println("Grade                 : "
+                                                          + PlacementPredictor.getGrade(st));
+                                                  
+                                                  System.out.println("Recommended Company   : "
+                                                          + PlacementPredictor.recommendCompany(st));
+                                                  
+                                                  System.out.printf("Placement Percentage  : %.2f%%%n",
+                                                          PlacementPredictor.getPlacementPercentage(st));
+                                                  
+                                                  System.out.println("-------------------------------------------");
+                                            }
+                                        
+                                         break;
 
+
+                                    
                                     case 9:
 
                                      FileManager.saveStudents(students);
@@ -477,15 +585,50 @@ public class Main {
                                 
                                     break;
 
-                            case 13:
+                            
 
-                                FileManager.saveStudents(students);
+                                case 13:
+                              
+                                  FileManager.saveStudents(students);
+                              
+                                  System.out.println("\n==================================================");
+                                  System.out.println("        THANK YOU FOR USING");
+                                  System.out.println("   SMART PLACEMENT PREDICTION SYSTEM");
+                                  System.out.println("--------------------------------------------------");
+                                  System.out.println("Developed By : Shubham Pandey");
+                                  System.out.println("Version      : 2.0");
+                                  System.out.println("Data Saved Successfully");
+                                  System.out.println("==================================================");
+                              
+                                  System.exit(0);
+                                break;
+
+                                case 14:
+                            
+                                System.out.println("\n==================================================");
+                                System.out.println("           ABOUT THIS PROJECT");
+                                System.out.println("==================================================");
+                                System.out.println("Project Name : Smart Placement Prediction System");
+                                System.out.println("Version      : 2.0");
+                                System.out.println("Language     : Java");
+                                System.out.println("Developer    : Shubham Pandey");
+                                System.out.println("College      : Technocrats Institute of Technology");
+                                System.out.println("Branch       : CSE - Data Science");
+                                System.out.println("==================================================");
+                                System.out.println("Features:");
+                                System.out.println("✔ Student Management");
+                                System.out.println("✔ Placement Prediction");
+                                System.out.println("✔ Dashboard");
+                                System.out.println("✔ Student Ranking");
+                                System.out.println("✔ Top Performer");
+                                System.out.println("✔ Report Generation");
+                                System.out.println("✔ Company Eligibility Checker");
+                                System.out.println("✔ File Handling");
+                                System.out.println("==================================================");
+                            
+                                break;
                                 
-                                System.out.println("Thank You!");
                                 
-                                System.exit(0);
-                                
-                            break;
  
                                  
                                         
